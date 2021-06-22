@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import MyChart from './MyChart';
+import rawData from './rawdata.js';
 
 function App() {
+    let map = {};
+
+    for (let row of rawData) {
+        const dt = new Date(row.period);
+        const sdate = (dt.getMonth() + 1) + '/' + dt.getDate() + '/' + dt.getFullYear();
+
+        if (!map[sdate]) map[sdate] = { period: dt };
+        map[sdate][row.sales_channel] = row.sales;
+    }
+
+    console.log(map);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h3>Chart Test Demo (Dhaval Dhanani)</h3> <br />
+        <h4>Sales Forecast</h4>
+        <MyChart data={Object.values(map)}></MyChart>
     </div>
   );
 }

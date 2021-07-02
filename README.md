@@ -1,6 +1,6 @@
 # React amcharts
 
-This application shows a sales chart by different dates and channels. 
+This application demonstrates React functional component and a sales chart by different dates and channels. 
 It is built with React.js and amcharts library.
 
 ## Available Scripts
